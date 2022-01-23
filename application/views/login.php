@@ -12,7 +12,7 @@
     <meta name="description" content="Modern, flexible and responsive Bootstrap 5 admin &amp; dashboard template">
     <meta name="author" content="Bootlab">
 
-    <title>Spark - Bootstrap 5 Admin &amp; Dashboard Template</title>
+    <title>Palmyra Hotels &amp; Administarion Login</title>
 
     <!-- PICK ONE OF THE STYLES BELOW -->
     <!-- <link href="<?php echo base_url() ?>assets/css/modern.css" rel="stylesheet"> -->
