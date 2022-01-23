@@ -59,8 +59,7 @@
                                                 </div>
                                                 <h1 class="display-5 mt-1 mb-3"><?php if(!empty($salesToday)){echo count($salesToday) ;}else { echo '0';  }  ?></h1>
                                                 <div class="mb-0">
-                                                    <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -2.65% </span>
-                                                    Less sales than usual
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -81,8 +80,7 @@
                                                 </div>
                                                 <h1 class="display-5 mt-1 mb-3"><?php if(!empty($ordersToday)){echo count($ordersToday) ;}else { echo '0';  }  ?></h1>
                                                 <div class="mb-0">
-                                                    <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 5.50% </span>
-                                                    More visitors than usual
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -105,8 +103,7 @@
                                                 </div>
                                                 <h1 class="display-5 mt-1 mb-3"><?php if(!empty($searchToday)){echo count($searchToday) ;}else { echo '0';  }  ?></h1>
                                                 <div class="mb-0">
-                                                    <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 8.35% </span>
-                                                    More earnings than usual
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -127,8 +124,7 @@
                                                 </div>
                                                 <h1 class="display-5 mt-1 mb-3"><?php if(!empty($ordersToday)){echo count($ordersToday) ;}else { echo '0';  }  ?></h1>
                                                 <div class="mb-0">
-                                                    <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -4.25% </span>
-                                                    Less orders than usual
+                                                   
                                                 </div>
                                             </div>
                                         </div>
@@ -446,7 +442,7 @@
                         borderColor: window.theme.primary,
                         hoverBackgroundColor: window.theme.primary,
                         hoverBorderColor: window.theme.primary,
-                        data: [54, 67, 41, 55, 62, 45, 55, 73, 60, 76, 48, 79],
+                        data: [<?php for( $i = 1;  $i <12 ; $i++ )  {  if(  empty($sales[$i])  ){  echo "0,";  } else {   echo $sales[$i]->countRes.',' ;}  } ?>],
                         barPercentage: .75,
                         categoryPercentage: .5
                     }]
@@ -484,15 +480,8 @@
                 selector: "#world_map",
                 zoomButtons: true,
                 selectedRegions: [
-                    'US',
-                    'SA',
-                    'DE',
-                    'FR',
-                    'CN',
-                    'AU',
-                    'BR',
-                    'IN',
-                    'GB'
+                    'TN'
+                    
                 ],
                 regionStyle: {
                     initial: {

@@ -33,10 +33,13 @@ class User_model extends CI_Model
      * @param string $searchText : This is optional search text
      * @return number $count : This is row count
      */
-    function userListing()
+    function userListing($roleId = ''  )
     {
         $this->db->select('BaseTbl.* ');
         $this->db->from('tbl_users as BaseTbl');
+        if($roleId != '' ){
+            $this->db->where('BaseTbl.roleId = ',$roleId );
+        }
        
         $query = $this->db->get();
         return $query->result();

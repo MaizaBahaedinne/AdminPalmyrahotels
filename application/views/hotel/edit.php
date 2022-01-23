@@ -121,8 +121,8 @@
 												<td>PD</td>
 												<td>+<?php echo $hotelPrice->PD ?> <sup>DT</sup></td>
 												<?php foreach ($rooms as $room ){ ?>
-													<td><?php if($hotelPrice->DP>0){ if($room->capacity > 1){ echo $room->capacity * ($hotelPrice->PD +$hotelPrice->price ) ; }  
-																					  else {echo $room->capacity * ($hotelPrice->PD +$hotelPrice->price +  $hotelPrice->supS ) ; } } ?><sup>DT</sup></td> 
+													<td><?php if($hotelPrice->DP>0){ if($room->capacity > 1){ echo $room->capacity * ($hotelPrice->PD +$hotelPrice->price )."<sup>DT</sup>" ; }  
+																					  else {echo $room->capacity * ($hotelPrice->PD +$hotelPrice->price +  $hotelPrice->supS )."<sup>DT</sup>" ; } } ?></td> 
 												<?php } ?> 
 												
 											</tr>
@@ -130,8 +130,8 @@
 												<td>DP</td>
 												<td>+<?php echo $hotelPrice->DP ?> <sup>DT</sup></td>
 												<?php foreach ($rooms as $room ){ ?>
-													<td><?php if($hotelPrice->DP>0){ if($room->capacity > 1){ echo $room->capacity * ($hotelPrice->DP +$hotelPrice->price ) ; }  
-																					  else {echo $room->capacity * ($hotelPrice->DP +$hotelPrice->price +  $hotelPrice->supS ) ; } } ?><sup>DT</sup></td> 
+													<td><?php if($hotelPrice->DP>0){ if($room->capacity > 1){ echo $room->capacity * ($hotelPrice->DP +$hotelPrice->price )."<sup>DT</sup>" ; }  
+																					  else {echo $room->capacity * ($hotelPrice->DP +$hotelPrice->price +  $hotelPrice->supS )."<sup>DT</sup>" ; } } ?></td> 
 												<?php } ?>  
 												
 											</tr>
@@ -139,8 +139,8 @@
 												<td>PC</td>
 												<td>+<?php echo $hotelPrice->PC ?> <sup>DT</sup></td>
 												<?php foreach ($rooms as $room ){ ?>
-													<td><?php if($hotelPrice->PC>0){ if($room->capacity > 1){ echo $room->capacity * ($hotelPrice->PC +$hotelPrice->price ) ; }  
-																					  else {echo $room->capacity * ($hotelPrice->PC +$hotelPrice->price +  $hotelPrice->supS ) ; } } ?><sup>DT</sup></td> 
+													<td><?php if($hotelPrice->PC>0){ if($room->capacity > 1){ echo $room->capacity * ($hotelPrice->PC +$hotelPrice->price )."<sup>DT</sup>" ; }  
+																					  else {echo $room->capacity * ($hotelPrice->PC +$hotelPrice->price +  $hotelPrice->supS )."<sup>DT</sup>" ; } } ?></td> 
 												<?php } ?> 
 												
 											</tr>
@@ -148,8 +148,8 @@
 												<td>ALLS</td>
 												<td>+<?php echo $hotelPrice->ALLS ?> <sup>DT</sup></td>
 												<?php foreach ($rooms as $room ){ ?>
-													<td><?php if($hotelPrice->ALLS>0){ if($room->capacity > 1){ echo $room->capacity * ($hotelPrice->ALLS +$hotelPrice->price ) ; }  
-																					  else {echo $room->capacity * ($hotelPrice->ALLS +$hotelPrice->price +  $hotelPrice->supS ) ; } } ?><sup>DT</sup></td> 
+													<td><?php if($hotelPrice->ALLS>0){ if($room->capacity > 1){ echo $room->capacity * ($hotelPrice->ALLS +$hotelPrice->price )."<sup>DT</sup>" ; }  
+																					  else {echo $room->capacity * ($hotelPrice->ALLS +$hotelPrice->price +  $hotelPrice->supS )."<sup>DT</sup>" ; } } ?></td> 
 												<?php } ?>  
 												
 											</tr>
@@ -157,8 +157,8 @@
 												<td>ALLH</td>
 												<td>+<?php echo $hotelPrice->ALLH ?> <sup>DT</sup></td>
 												<?php foreach ($rooms as $room ){ ?>
-													<td><?php if($hotelPrice->ALLH>0){ if($room->capacity > 1){ echo $room->capacity * ($hotelPrice->ALLH +$hotelPrice->price ) ; }  
-																					  else {echo $room->capacity * ($hotelPrice->ALLH +$hotelPrice->price +  $hotelPrice->supS ) ; } } ?><sup>DT</sup></td> 
+													<td><?php if($hotelPrice->ALLH>0){ if($room->capacity > 1){ echo $room->capacity * ($hotelPrice->ALLH +$hotelPrice->price )."<sup>DT</sup>" ; }  
+																					  else {echo $room->capacity * ($hotelPrice->ALLH +$hotelPrice->price +  $hotelPrice->supS )."<sup>DT</sup>" ; } } ?></td> 
 												<?php } ?> 
 												
 											</tr>
