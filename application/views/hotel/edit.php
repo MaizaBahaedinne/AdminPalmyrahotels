@@ -95,6 +95,80 @@
 								</div>
 							</div>
 						</div>
+						<div class="col-12 col-xl-12">
+							<div class="card">
+								<div class="card-header">
+									<h5 class="card-title">Actuel Price</h5>
+									<h6 class="card-subtitle text-muted">Saisson : <?php echo $hotelPrice->titre ?> </h6> 
+									<span style="text-align: right;"><strong>from</strong> <?php echo $hotelPrice->date_debut ?> <strong>To</strong> <?php echo $hotelPrice->date_fin ?></span> 
+								</div>
+								<div class="card-body">
+									<table id="datatables-reponsive" class="table table-striped" style="width:100%">
+										<thead>
+											<tr>
+												<th>Room</th>
+												<th>Price</th>
+												<?php foreach ($rooms as $room ){ ?><td><?php echo $room->titre ?></td> <?php } ?> 
+																						 
+												
+											</tr>
+										</thead>
+										<tbody>
+											
+											
+											
+											<tr>
+												<td>PD</td>
+												<td>+<?php echo $hotelPrice->PD ?> <sup>DT</sup></td>
+												<?php foreach ($rooms as $room ){ ?>
+													<td><?php if($hotelPrice->DP>0){ if($room->capacity > 1){ echo $room->capacity * ($hotelPrice->PD +$hotelPrice->price ) ; }  
+																					  else {echo $room->capacity * ($hotelPrice->PD +$hotelPrice->price +  $hotelPrice->supS ) ; } } ?><sup>DT</sup></td> 
+												<?php } ?> 
+												
+											</tr>
+											<tr>
+												<td>DP</td>
+												<td>+<?php echo $hotelPrice->DP ?> <sup>DT</sup></td>
+												<?php foreach ($rooms as $room ){ ?>
+													<td><?php if($hotelPrice->DP>0){ if($room->capacity > 1){ echo $room->capacity * ($hotelPrice->DP +$hotelPrice->price ) ; }  
+																					  else {echo $room->capacity * ($hotelPrice->DP +$hotelPrice->price +  $hotelPrice->supS ) ; } } ?><sup>DT</sup></td> 
+												<?php } ?>  
+												
+											</tr>
+											<tr>
+												<td>PC</td>
+												<td>+<?php echo $hotelPrice->PC ?> <sup>DT</sup></td>
+												<?php foreach ($rooms as $room ){ ?>
+													<td><?php if($hotelPrice->PC>0){ if($room->capacity > 1){ echo $room->capacity * ($hotelPrice->PC +$hotelPrice->price ) ; }  
+																					  else {echo $room->capacity * ($hotelPrice->PC +$hotelPrice->price +  $hotelPrice->supS ) ; } } ?><sup>DT</sup></td> 
+												<?php } ?> 
+												
+											</tr>
+											<tr>
+												<td>ALLS</td>
+												<td>+<?php echo $hotelPrice->ALLS ?> <sup>DT</sup></td>
+												<?php foreach ($rooms as $room ){ ?>
+													<td><?php if($hotelPrice->ALLS>0){ if($room->capacity > 1){ echo $room->capacity * ($hotelPrice->ALLS +$hotelPrice->price ) ; }  
+																					  else {echo $room->capacity * ($hotelPrice->ALLS +$hotelPrice->price +  $hotelPrice->supS ) ; } } ?><sup>DT</sup></td> 
+												<?php } ?>  
+												
+											</tr>
+											<tr>
+												<td>ALLH</td>
+												<td>+<?php echo $hotelPrice->ALLH ?> <sup>DT</sup></td>
+												<?php foreach ($rooms as $room ){ ?>
+													<td><?php if($hotelPrice->ALLH>0){ if($room->capacity > 1){ echo $room->capacity * ($hotelPrice->ALLH +$hotelPrice->price ) ; }  
+																					  else {echo $room->capacity * ($hotelPrice->ALLH +$hotelPrice->price +  $hotelPrice->supS ) ; } } ?><sup>DT</sup></td> 
+												<?php } ?> 
+												
+											</tr>
+
+										
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
 
 						<div class="col-12 col-xl-6">
 							<div class="card">
@@ -130,65 +204,7 @@
 							</div>
 						</div>
 
-						<div class="col-12 col-xl-6">
-							<div class="card">
-								<div class="card-header">
-									<h5 class="card-title">Actuel Price</h5>
-									<h6 class="card-subtitle text-muted">Saisson : <?php echo $hotelPrice->titre ?> </h6> 
-									<span style="text-align: right;"><strong>from</strong> <?php echo $hotelPrice->date_debut ?> <strong>To</strong> <?php echo $hotelPrice->date_fin ?></span> 
-								</div>
-								<div class="card-body">
-									<table id="datatables-reponsive" class="table table-striped" style="width:100%">
-										<thead>
-											<tr>
-												<th>Room</th>
-												<th>Price</th>
-												<td>TT Price</td>
-											</tr>
-										</thead>
-										<tbody>
-											
-											<tr>
-												<td>Room</td>
-												<td><?php echo $hotelPrice->price ?> DT</td>
-											</tr>
-											<tr>
-												<td>Sup Single</td>
-												<td>+<?php echo $hotelPrice->supS ?> DT</td>
-												<td>+<?php echo $hotelPrice->supS + $hotelPrice->price ?> DT</td>
-											</tr>
-											<tr>
-												<td>PD</td>
-												<td>+<?php echo $hotelPrice->PD ?> DT</td>
-												<td>+<?php echo $hotelPrice->PD + $hotelPrice->price ?> DT</td>
-											</tr>
-											<tr>
-												<td>DP</td>
-												<td>+<?php echo $hotelPrice->DP ?> DT</td>
-												<td>+<?php echo $hotelPrice->DP + $hotelPrice->price ?> DT</td>
-											</tr>
-											<tr>
-												<td>PC</td>
-												<td>+<?php echo $hotelPrice->PC ?> DT</td>
-												<td>+<?php echo $hotelPrice->PC + $hotelPrice->price ?> DT</td>
-											</tr>
-											<tr>
-												<td>ALLS</td>
-												<td>+<?php echo $hotelPrice->ALLS ?> DT</td>
-												<td>+<?php echo $hotelPrice->ALLS + $hotelPrice->price ?> DT</td>
-											</tr>
-											<tr>
-												<td>ALLH</td>
-												<td>+<?php echo $hotelPrice->ALLH ?> DT</td>
-												<td>+<?php echo $hotelPrice->ALLH + $hotelPrice->price ?> DT</td>
-											</tr>
-
-										
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
+						
 
 					
 						
