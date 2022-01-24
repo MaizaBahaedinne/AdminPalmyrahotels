@@ -3,39 +3,38 @@
 
 					<div class="header">
 						<h1 class="header-title">
-							Clients
+							Saisons
 						</h1>
 						
 					</div>
 					<div class="row">
-						<div class="col-12">
+						<div class="col-5">
 							<div class="card">
 								<div class="card-header">
-									<h5 class="card-title">Clients</h5>
+									<h5 class="card-title">Saison</h5>
 									
 								</div>
 								<div class="card-body">
 									<table id="datatables-reponsive" class="table table-striped" style="width:100%">
 										<thead>
 											<tr>
-												<th>Saison ID</th>
-												<th>titre</th>
-												<th>date_debut</th>
-												<th>date_fin</th>
 												
+												<th width="50%">titre</th>
 												<th>Statut </th>
+												<th>start</th>
+												<th>end</th>
+												
+												
 											
-												<th>Action</th>
+												
 											</tr>
 										</thead>
 										<tbody>
 											<?php foreach ($Saisons as $saison ){ ?> 
 											<tr>
-												<td><?php echo $saison->saisonId ?></td>
+												
 												<td><?php echo $saison->titre ?></td>
-												<td><?php echo $saison->date_debut ?></td>
-												<td><?php echo $saison->date_fin ?></td>
-											
+
 												<td>
 												<?php 
 
@@ -45,7 +44,8 @@
 												if ($date2 >  $date1  ){ 
 												
 			                                    $interval = $date1->diff($date2);
-			                                    echo 'next '.$interval->d.' day' ; }
+
+			                                    echo $interval->format('in %M mounth %D days'); }
 			                                    else
 			                                    {
 
@@ -55,8 +55,11 @@
 
 
 			                                     ?></td>
+												<td><?php echo $saison->date_debut ?></td>
+												<td><?php echo $saison->date_fin ?></td>
+											
 												
-												<td><i class="ion ion-ios-eye me-2"></i> </td>
+												
 											</tr>
 										<?php } ?> 
 										</tbody>
@@ -64,9 +67,24 @@
 								</div>
 							</div>
 						</div>
+
+						<div class="col-7">
+							<div class="card">
+								<div class="card-header">
+									<h5 class="card-title">Sasison Calendar</h5>
+									
+								</div>
+								<div class="card-body">
+									
+									
+										<div id="fullcalendar"></div>
+									
+								</div>
+							</div>
+						</div>
 					</div>
 
-				</div>
+				
 			</main>
 
 
@@ -78,5 +96,34 @@
 			$("#datatables-reponsive").DataTable({
 				responsive: true
 			});
+		});
+	</script>
+
+
+		<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			var calendarEl = document.getElementById('fullcalendar');
+			var calendar = new FullCalendar.Calendar(calendarEl, {
+				themeSystem: 'bootstrap',
+				initialView: 'dayGridMonth',
+				
+				headerToolbar: {
+					left: 'prev,next today',
+					center: 'title',
+					right: 'dayGridMonth,timeGridWeek,timeGridDay'
+				},
+				events: [
+					<?php foreach ($Saisons as $saison ){ ?> 
+					{
+						title: '<?php echo $saison->titre ?>',
+						start: '<?php echo $saison->date_debut ?> 00:00:00',
+						end: '<?php echo $saison->date_fin ?> 00:00:00'
+					},
+					<?php } ?> 
+				]
+			});
+			setTimeout(function() {
+				calendar.render();
+			}, 400)
 		});
 	</script>

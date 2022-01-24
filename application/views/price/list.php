@@ -3,99 +3,44 @@
 
 					<div class="header">
 						<h1 class="header-title">
-							Edit <?php echo $hotel->name ?>
+							Prices | <?php echo $hotel->name ?>
 						</h1>
 						
 					</div>
 					<div class="row">
-						<div class="col-12 col-xl-6">
+						<div class="col-12 col-xl-4">
 							<div class="card">
 								<div class="card-header">
-									<h5 class="card-title">Hotel</h5>
+									<h5 class="card-title">Rooms</h5>
 									<h6 class="card-subtitle text-muted">Palmyra <?php echo $hotel->name?>.</h6>
 								</div>
 								<div class="card-body">
-									<form>
-										<div class="mb-3 ">
-											<label class="form-label">Name</label>
-											<input type="name" class="form-control" placeholder="Name" value="<?php echo $hotel->name ?>">
-										</div>
-
-										<div class="mb-3 ">
-											<label class="form-label">description</label>
-											<textarea class="form-control" placeholder="description" rows="2"><?php echo $hotel->Adresse ?></textarea>
-										</div>
-										<div class="mb-3 ">
-											<label class="form-label">Password</label>
-											
-												<input type="password" class="form-control" placeholder="Password">
-											
-										</div>
-									
-
-										<fieldset class="mb-3">
-											<div class="row">
-												<label class="form-label">Statut</label>
-												<div class="col-sm-10">
-													<label class="form-check">
-														<input name="radio-3" type="radio" class="form-check-input" <?php if ($hotel->statut == 0 ){ echo "checked" ; }  ?> >
-														<span class="form-check-label">Actif</span>
-													</label>
-													<label class="form-check">
-														<input name="radio-3" type="radio" class="form-check-input"  <?php if ($hotel->statut == 1 ){ echo "checked" ; }  ?>>
-														<span class="form-check-label">Closed</span>
-													</label>
-													
-												</div>
-											</div>
-										</fieldset>
-										
-										
-										<button type="submit" class="btn btn-primary">Submit</button>
-									</form>
+									<table id="datatables" class="table table-striped" style="width:100%">
+										<thead>
+											<tr>
+												<th>Room</th>
+												
+												
+												
+												
+											</tr>
+										</thead>
+										<tbody>
+											<?php foreach ($rooms as $room ){ ?> 
+											<tr>
+												<td><?php echo $room->titre ?></td>
+												
+												
+												
+												
+											</tr>
+										<?php } ?> 
+										</tbody>
+									</table>
 								</div>
 							</div>
 						</div>
-						<div class="col-12 col-xl-6">
-							<div class="card">
-								<div class="card-header">
-									<h5 class="card-title">Contact</h5>
-									<h6 class="card-subtitle text-muted">Palmyra <?php echo $hotel->name?>.</h6>
-								</div>
-								<div class="card-body">
-									<form>
-										<div class="mb-3 row">
-											<label class="col-form-label col-sm-2 text-sm-end">Maps</label>
-											<div class="col-sm-10">
-												 <iframe id="map" class="map" src="<?php echo $hotel->longitude ?>" style="border:0;" allowfullscreen="true" loading="lazy"></iframe>
-											</div>
-										</div>
-
-										<div class="mb-3 row">
-											<label class="col-form-label col-sm-2 text-sm-end">phone</label>
-											<div class="col-sm-10">
-												<input type="tel" class="form-control" placeholder="phone" value="<?php echo $hotel->phone ?>">
-											</div>
-
-										</div>
-										<div class="mb-3 row">
-											<label class="col-form-label col-sm-2 text-sm-end">mail</label>
-											<div class="col-sm-10">
-												<input type="email" class="form-control" placeholder="mail" value="<?php echo $hotel->mail ?>">
-											</div>
-										</div>
-										
-										
-										<div class="mb-3 row">
-											<div class="col-sm-10 ms-sm-auto">
-												<button type="submit" class="btn btn-primary">Submit</button>
-											</div>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-						<div class="col-12 col-xl-7">
+						<div class="col-12 col-xl-8">
 							<div class="card">
 								<div class="card-header">
 									<h5 class="card-title">Actuel Price</h5>
@@ -170,31 +115,59 @@
 							</div>
 						</div>
 
-						<div class="col-12 col-xl-5">
+						<div class="col-12 col-xl-8">
 							<div class="card">
 								<div class="card-header">
 									<h5 class="card-title">Rooms</h5>
-									<h6 class="card-subtitle text-muted">Palmyra <?php echo $hotel->name?>.</h6>
+									
 								</div>
 								<div class="card-body">
-									<table id="datatables-reponsive" class="table table-striped" style="width:100%">
+									<div id="fullcalendar"></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-12 col-xl-4">
+							<div class="card">
+								<div class="card-header">
+									<h5 class="card-title">Configured saison</h5>
+									
+								</div>
+								<div class="card-body">
+									<table id="datatables" class="table table-striped" style="width:100%">
 										<thead>
 											<tr>
 												<th>Room</th>
-												<th>Capacity</th>
-												<th>options</th>
 												
-												<th>Action</th>
+												
+												
+												
 											</tr>
 										</thead>
 										<tbody>
-											<?php foreach ($rooms as $room ){ ?> 
+											<?php foreach ($Saisons as $saison ){ ?> 
 											<tr>
-												<td><?php echo $room->titre ?></td>
-												<td><?php echo $room->capacity ?></td>
-												<td><?php foreach ($room->options as $option) { echo $option->option."<br>" ;  }?></td>
+												<td><?php echo $saison->titre ?> 
+												<?php 
+
+												$date1 = new DateTime( 'now' );
+			                                    $date2 = new DateTime( $saison->date_debut ) ;
+
+												if ($date2 >  $date1  ){ 
 												
-												<td></td>
+			                                    $interval = $date1->diff($date2);
+
+			                                    }
+			                                    else
+			                                    {
+
+			                                    	echo "<span class='badge bg-success'>Current</span>" ;
+			                                    }
+
+
+
+			                                     ?></td>
+
 												
 											</tr>
 										<?php } ?> 
@@ -205,10 +178,51 @@
 						</div>
 
 						
-
 					
-						
 					</div>
 
-				</div>
+				
 			</main>
+
+
+
+
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			// Datatables Responsive
+			$("#datatables-reponsive").DataTable({
+				responsive: true
+			});
+		});
+	</script>
+
+
+		<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			var calendarEl = document.getElementById('fullcalendar');
+			var calendar = new FullCalendar.Calendar(calendarEl, {
+				themeSystem: 'bootstrap',
+				initialView: 'dayGridMonth',
+				
+				headerToolbar: {
+					left: 'prev,next today',
+					center: 'title',
+					right: 'dayGridMonth,timeGridWeek,timeGridDay'
+				},
+				events: [
+					<?php foreach ($hotelPriceByroom as $price ){ ?> 
+					{
+						title: '<?php echo $price->titre   ?> :  <?php echo $price->price ?> DT ' ,
+						start: '<?php echo $price->date_debut ?> 00:00:00',
+						end: '<?php echo $price->date_fin ?> 00:00:00',
+						
+						groupId: '<?php echo $price->saisonId ?>',
+					},
+					<?php } ?> 
+				]
+			});
+			setTimeout(function() {
+				calendar.render();
+			}, 400)
+		});
+	</script>

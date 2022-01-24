@@ -34,11 +34,16 @@
 												<td><?php echo $user->userId ?></td>
 												<td><?php echo $user->name ?></td>
 												<td> <?php echo $user->country ?></td>
-												<td>+<?php echo $user->country_code ?> <?php echo $user->phone ?></td>
-												<td><?php echo $user->email ?></td>
+												<td><a href="tel:+<?php echo $user->country_code ?><?php echo $user->phone ?>">+<?php echo $user->country_code ?> <?php echo $user->phone ?></a></td>
+												<td><a href="mailto:<?php echo $user->email ?>"><?php echo $user->email ?></a></td>
 												<td><?php echo $user->createdDtm ?></td>
 												
-												<td><i class="ion ion-ios-eye me-2"></i> </td>
+												<td>
+													<i class="ion ion-ios-eye me-2"></i>  
+													<a href="<?php echo base_url()?>Users/edit/<?php echo $user->userId ?>">
+														<i class="align-middle me-2 fas fa-fw fa-pencil-alt"></i>
+													</a> 
+												</td>
 											</tr>
 										<?php } ?> 
 										</tbody>

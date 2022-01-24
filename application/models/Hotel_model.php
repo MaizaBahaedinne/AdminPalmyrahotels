@@ -121,7 +121,7 @@ class Hotel_model extends CI_Model
     }
 
 
-             /**
+     /**
      * This function is used to get the user listing count
      * @param string $searchText : This is optional search text
      * @return number $count : This is row count
@@ -148,6 +148,32 @@ class Hotel_model extends CI_Model
         $query = $this->db->get();
         
         return $query->row();
+    }
+
+
+
+     /**
+     * This function is used to get the user listing count
+     * @param string $searchText : This is optional search text
+     * @return number $count : This is row count
+     */
+    function roomMsPriceByHotel ( $hotelId ,   )
+    {
+
+       
+        $this->db->select("BaseTbl.* , prices.* , Saison.*  ");
+        
+
+        $this->db->from('tbl_saison as BaseTbl');
+        $this->db->join('tbl_price as prices' , 'BaseTbl.saisonId = prices.saisonId ','Left');
+        $this->db->join('tbl_saison as Saison' , 'Saison.saisonId = prices.saisonId ','Left');
+        $this->db->where('prices.hotelId = ',$hotelId );
+       
+        $this->db->order_by('BaseTbl.date_debut   ASC ');
+        
+        $query = $this->db->get();
+        
+        return $query->result();
     }
 
 

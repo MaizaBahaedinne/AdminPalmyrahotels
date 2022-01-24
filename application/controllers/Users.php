@@ -14,13 +14,31 @@ class Users extends BaseController {
     }
     
 
+    public function index()
+        {
+
+          $data['Users'] = $this->user_model->userListing() ; 
+          $this->global['pageTitle'] = 'Users';
+          $this->loadViews("users/list", $this->global, $data, NULL);         
+        }   
+
  	public function clients()
     	{
 
-          $data['Users'] = $this->user_model->userListing() ; 
+          $data['Users'] = $this->user_model->userListing(4) ; 
     	  $this->global['pageTitle'] = 'Client';
           $this->loadViews("users/list", $this->global, $data, NULL);         
    	    }   
+
+
+
+        public function edit($userId)
+            {
+
+          $data['user'] = $this->user_model->user($userId) ; 
+          $this->global['pageTitle'] = 'Client | '.$data['user']->name;
+          $this->loadViews("users/edit", $this->global, $data, NULL);         
+        }   
         		
    
 
