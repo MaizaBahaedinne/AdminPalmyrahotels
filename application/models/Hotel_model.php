@@ -157,7 +157,7 @@ class Hotel_model extends CI_Model
      * @param string $searchText : This is optional search text
      * @return number $count : This is row count
      */
-    function roomMsPriceByHotel ( $hotelId ,   )
+    function roomMsPriceByHotel ( $hotelId   )
     {
 
        
