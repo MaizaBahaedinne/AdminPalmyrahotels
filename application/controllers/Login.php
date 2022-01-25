@@ -67,14 +67,14 @@ class Login extends CI_Controller
             
            
 
-         if(!empty($result))
+         if( (!empty($result)) && $result->roleId != 4 )
             {
               
 
                 $sessionArray = array('userId'=>$result->userId,                    
                                         'role'=>$result->roleId,
                                         'avatar'=>$result->avatar,
-                                        'roleText'=>$result->role,
+                                        'roleText'=>$result->roleTXT,
                                         'name'=>$result->name,
                                         'isDeleted' => $result->isDeleted ,
                                         

@@ -193,15 +193,20 @@ class BaseController extends CI_Controller {
 
     	$this->load->model('hotel_model');
     	$this->load->model('bar_model');
-      
-         $this->load->model('reservation_model');
-    
-    			 $headerInfo['hotels'] = $this->hotel_model->hotelListing() ;
+      $this->load->model('user_model');
+      $this->load->model('reservation_model');
+
+
+    				$user = $this->user_model->user($this->vendorId) ;
+
+    			 $headerInfo['hotelsM'] = $this->hotel_model->hotelListing( "" , $user->hotels  ) ;
+    			 $headerInfo['hotels'] = $this->hotel_model->hotelListing( "" , $user->hotels) ;
     			 foreach ($headerInfo['hotels'] as $hotel) {
     			 	 $hotel->salesByHotel = $this->reservation_model->salesByHotel($hotel->hotelId) ;
     			 }
 
-    			 $footerInfo['hotels'] = $this->hotel_model->hotelListing() ;
+    			 
+    			 
     			 
     	  		 
     	  		 $headerInfo['bars'] = $this->bar_model->barListing() ;

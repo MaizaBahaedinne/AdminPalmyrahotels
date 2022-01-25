@@ -17,12 +17,16 @@ class Hotel_model extends CI_Model
      * @param string $searchText : This is optional search text
      * @return number $count : This is row count
      */
-    function hotelListing($statut = '' )
+    function hotelListing($statut = '' , $in = "" )
     {
         $this->db->select('BaseTbl.* ');
         $this->db->from('tbl_hotels as BaseTbl');
         if($statut != '' ){
             $this->db->where('BaseTbl.statut = ',$statut );
+        }
+
+        if($in != '' ){
+            $this->db->where('BaseTbl.hotelId in ('.$in.')' );
         }
         
         $query = $this->db->get();

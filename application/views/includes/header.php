@@ -48,7 +48,11 @@
                 <div class="sidebar-user">
                     <img src="<?php echo base_url() ?>assets/img/avatars/avatar.jpg" class="img-fluid rounded-circle mb-2" alt="<?php echo $name ?>" />
                     <div class="fw-bold"><?php echo $name ?></div>
-                    <small></small>
+                    <small><?php echo $role_text ?></small>
+                    <br>
+                    <?php if ($role != 1 ) { ?>
+                    <small><?php foreach ($hotelsM as  $hotel ) { echo $hotel->name.'<br>' ; } ?> </small>
+                    <?php } ?>
                 </div>
 
                 <ul class="sidebar-nav">

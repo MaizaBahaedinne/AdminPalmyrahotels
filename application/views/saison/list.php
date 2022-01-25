@@ -110,7 +110,7 @@
 				headerToolbar: {
 					left: 'prev,next today',
 					center: 'title',
-					right: 'dayGridMonth,timeGridWeek,timeGridDay'
+					right: 'dayGridMonth'
 				},
 				events: [
 					<?php foreach ($Saisons as $saison ){ ?> 
