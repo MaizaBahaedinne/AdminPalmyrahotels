@@ -119,7 +119,8 @@
 					{
 						title: '<?php echo $saison->titre ?>',
 						start: '<?php echo $saison->date_debut ?> 00:00:00',
-						end: '<?php echo $saison->date_fin ?> 00:00:00'
+						end: '<?php echo $saison->date_fin ?> 00:00:00',  
+						eventColor: '<?php echo $saison->color ?>'
 					},
 					<?php } ?> 
 				]
