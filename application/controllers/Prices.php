@@ -37,7 +37,8 @@ class Prices extends BaseController {
 
 		                $this->global['pageTitle'] = 'Prices '.$data['hotel']->name;
 
-		            	$data['Saisons'] = $this->saison_model->saisonListing( ) ;
+		            	$data['Saisons'] = $this->saison_model->saisonListing($hotelId) ;
+		            	
 		                $this->loadViews("price/list", $this->global, $data, NULL);   
 		        }
         		

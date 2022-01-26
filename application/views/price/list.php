@@ -8,6 +8,76 @@
 						
 					</div>
 					<div class="row">
+
+						<div class="col-12 col-xl-12">
+							<div class="card">
+								<div class="card-header">
+									<h5 class="card-title">Configured saisons</h5>
+									
+								</div>
+								<div class="card-body">
+									<table id="datatables-reponsive" class="table table-striped" style="width:100%">
+										<thead>
+											<tr>
+												<th width="15%">Saison</th>
+												<th width="15%">statut</th>
+												<th>Begin</th>
+												<th>End</th>
+												<th>Price</th>
+												<th>supp S</th>
+												<th>PD</th>
+												<th>DP</th>
+												<th>PC</th>
+												<th>ALLS</th>
+												<th>ALLH</th>
+																			
+											</tr>
+										</thead>
+										<tbody>
+											<?php foreach ($Saisons as $saison ){ ?> 
+											<tr>
+												<td><?php echo $saison->titre ?> 
+												<td><?php 
+
+												$date1 = new DateTime( 'now' );
+			                                    $date2 = new DateTime( $saison->date_debut ) ;
+
+												if ($date2 >  $date1  ){ 
+												
+			                                    $interval = $date1->diff($date2);
+			                                     echo $interval->format('in %M mounth %D days');
+
+			                                    }
+			                                    else
+			                                    {
+
+			                                    	echo "<span class='badge bg-success'>Current</span>" ;
+			                                    }
+
+
+
+			                                     ?></td>
+			                                     <td><?php echo $saison->date_debut ?> </td>
+			                                     <td><?php echo $saison->date_fin ?> </td>
+
+			                                     <td><?php echo $saison->price ?> </td>
+			                                     <td><?php echo $saison->supS ?> </td>
+			                                     <td><?php echo $saison->PD ?> </td>
+			                                     <td><?php echo $saison->DP ?> </td>
+			                                     <td><?php echo $saison->PC ?> </td>
+			                                     <td><?php echo $saison->ALLS ?> </td>
+			                                     <td><?php echo $saison->ALLH ?> </td>
+
+
+												
+											</tr>
+										<?php } ?> 
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+
 						<div class="col-12 col-xl-4">
 							<div class="card">
 								<div class="card-header">
@@ -127,55 +197,7 @@
 							</div>
 						</div>
 
-						<div class="col-12 col-xl-4">
-							<div class="card">
-								<div class="card-header">
-									<h5 class="card-title">Configured saison</h5>
-									
-								</div>
-								<div class="card-body">
-									<table id="datatables" class="table table-striped" style="width:100%">
-										<thead>
-											<tr>
-												<th>Room</th>
-												
-												
-												
-												
-											</tr>
-										</thead>
-										<tbody>
-											<?php foreach ($Saisons as $saison ){ ?> 
-											<tr>
-												<td><?php echo $saison->titre ?> 
-												<?php 
-
-												$date1 = new DateTime( 'now' );
-			                                    $date2 = new DateTime( $saison->date_debut ) ;
-
-												if ($date2 >  $date1  ){ 
-												
-			                                    $interval = $date1->diff($date2);
-
-			                                    }
-			                                    else
-			                                    {
-
-			                                    	echo "<span class='badge bg-success'>Current</span>" ;
-			                                    }
-
-
-
-			                                     ?></td>
-
-												
-											</tr>
-										<?php } ?> 
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
+						
 
 						
 					
@@ -205,9 +227,9 @@
 				initialView: 'dayGridMonth',
 				
 				headerToolbar: {
-					left: 'prev,next today',
+					left: 'prev,next',
 					center: 'title',
-					right: 'dayGridMonth,timeGridWeek,timeGridDay'
+					right: 'today'
 				},
 				events: [
 					<?php foreach ($hotelPriceByroom as $price ){ ?> 

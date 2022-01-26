@@ -8,7 +8,7 @@
 						
 					</div>
 					<div class="row">
-						<div class="col-5">
+						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
 									<h5 class="card-title">Saison</h5>
@@ -68,7 +68,7 @@
 							</div>
 						</div>
 
-						<div class="col-7">
+						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
 									<h5 class="card-title">Sasison Calendar</h5>
@@ -106,6 +106,8 @@
 			var calendar = new FullCalendar.Calendar(calendarEl, {
 				themeSystem: 'bootstrap',
 				initialView: 'dayGridMonth',
+				defaultView: 'year',
+				yearColumns: 3,
 				
 				headerToolbar: {
 					left: 'prev,next today',

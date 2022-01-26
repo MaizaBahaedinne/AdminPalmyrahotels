@@ -17,14 +17,22 @@ class Saison_model extends CI_Model
      * @param string $searchText : This is optional search text
      * @return number $count : This is row count
      */
-    function saisonListing($statut = '' )
+    function saisonListing($hotelId = '' )
     {
-        $this->db->select('BaseTbl.* ');
+        $this->db->select('BaseTbl.* ,  ');
         $this->db->from('tbl_saison as BaseTbl');
-  
-        
+           
+        if($hotelId != '' ){    
+            $this->db->select('BaseTbl.* , Prices.* ');
+            $this->db->join('tbl_price as Prices', 'Prices.saisonId = BaseTbl.saisonId','left');
+            $this->db->where('Prices.hotelId = ',$hotelId );
+        }
+
         $query = $this->db->get();
+      
         return $query->result();
+
+
     }
 
 
