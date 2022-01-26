@@ -238,7 +238,7 @@
 						start: '<?php echo $price->date_debut ?> 00:00:00',
 						end: '<?php echo $price->date_fin ?> 00:00:00',
 						groupId: '<?php echo $price->saisonId ?>',  
-						backgroundColor: '<?php echo $saison->color ?>'
+						backgroundColor: '<?php echo $price->color ?>'
 					},
 					<?php } ?> 
 				]
