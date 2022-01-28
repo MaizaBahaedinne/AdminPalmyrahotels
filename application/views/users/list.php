@@ -23,6 +23,7 @@
 												<th>country</th>
 												<th>phone</th>
 												<th>email</th>
+												<th>statut</th>
 												<th>created</th>
 											
 												<th>Action</th>
@@ -36,6 +37,18 @@
 												<td> <?php echo $user->country ?></td>
 												<td><a href="tel:+<?php echo $user->country_code ?><?php echo $user->phone ?>">+<?php echo $user->country_code ?> <?php echo $user->phone ?></a></td>
 												<td><a href="mailto:<?php echo $user->email ?>"><?php echo $user->email ?></a></td>
+												<td>
+													<?php if ($user->isDeleted == 0  ){  ?>
+		                                                <span class="badge bg-success">actif</span>
+		                                            <?php } ?>
+		                                            <?php if ($user->isDeleted == 2  ){  ?>
+		                                                <span class="badge bg-danger">Blocked</span>
+		                                            <?php } ?>
+		                                            <?php if ($user->isDeleted == 1  ){  ?>
+		                                                <span class="badge bg-warning">Pending</span>
+		                                            <?php } ?>
+													
+												</td>
 												<td><?php echo $user->createdDtm ?></td>
 												
 												<td>

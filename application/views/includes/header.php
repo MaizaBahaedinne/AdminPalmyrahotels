@@ -78,13 +78,14 @@
                         </ul>
                        
                     </li>
+                    <?php if ($role == 1 ) {  ?>
                     <li class="sidebar-item">
                         <a  class="sidebar-link collapsed" href="<?php echo base_url() ?>Users/clients">
                            <i class="align-middle me-2 fas fa-fw fa-address-book"></i> <span class="align-middle">Clients</span>
                         </a>
                      
                     </li>
-                   
+                   <?php } ?>
                     
 
                     <li class="sidebar-header">
