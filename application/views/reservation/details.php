@@ -1,506 +1,212 @@
-
-
-<section id="hero_2" class="background-image" data-background="url(<?php echo base_url() ?>/assets/img/facade/hotel/<?php echo $hotel->facade ?>" >
-        <div class="opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.6)" style="background-color: rgba(0, 0, 0, 0.6);">
-    		<div class="intro_title">
-    			<h1>Place your order</h1>
-    			<div class="bs-wizard row">
-
-    				<div class="col-4 bs-wizard-step complete">
-    					<div class="text-center bs-wizard-stepnum">Your cart</div>
-    					<div class="progress">
-    						<div class="progress-bar"></div>
-    					</div>
-    					<a  class="bs-wizard-dot"></a>
-    				</div>
-
-    				<div class="col-4 bs-wizard-step active">
-    					<div class="text-center bs-wizard-stepnum">Your details</div>
-    					<div class="progress">
-    						<div class="progress-bar"></div>
-    					</div>
-    					<a class="bs-wizard-dot"></a>
-    				</div>
-
-    				<div class="col-4 bs-wizard-step disabled">
-    					<div class="text-center bs-wizard-stepnum">Finish!</div>
-    					<div class="progress">
-    						<div class="progress-bar"></div>
-    					</div>
-    					<a class="bs-wizard-dot"></a>
-    				</div>
-
-    			</div>
-    			<!-- End bs-wizard -->
-    		</div>
-    		<!-- End intro-title -->
-        </div>
-        <!-- End opacity-mask-->
-	</section>
-<form>
-<main style="margin-bottom: 392.094px;">
-                <div id="position">
+<link href="https://www.palmyrahotels.tn/assets/css/admin-1.css" rel="stylesheet">
+<link href="https://printjs-4de6.kxcdn.com/print.min.css" rel="stylesheet">
+<script src="https://www.palmyrahotels.tn/assets/js/qrcode.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.min.js"></script>
+<main class="content">
+   <div class="container-fluid">
+      <div class="header">
+         <h1 class="header-title">
+            Booking : <?php echo $reservation->reservationId ?>
+         </h1>
+      </div>
+      <div class="row">
+         <div class="col-8">
+            <div class="card">
+               <div class="card-header">
+                  <h5 class="card-title"></h5>
+               </div>
+               <div class="card-body">
+                  <div id="tabs" class="tabs">
+                     <button type="button" onclick="printJS('ivoic', 'html')">
+                     Print Form
+                     </button>
+                     <div class="content" style=" padding: 35px;border-radius: 30px;   background: url('https://www.palmyrahotels.tn/assets/img/logopageBG.png') ; background-repeat: no-repeat ; background-size: 50% auto; background-color: white; background-position: center; "  id="ivoic">
                         <div class="container">
-                                <ul>
-                                        <li><a href="#">Home</a>
-                                        </li>
-                                        <li><a href="#">Booking</a>
-                                        </li>
-                                        <li>Page active</li>
-                                </ul>
+                           <div class="row">
+                              <div class="col-12">
+                                 <div class="invoice-title">
+                                    <table width="100%">
+                                       <tr>
+                                          <td width="30%" ><img src="https://www.palmyrahotels.tn/assets/img/logopage.png" width="150px"></td>
+                                          <td></td>
+                                          <td width="30%">
+                                             <div id="qrcode" style="float:right;"></div>
+                                             <script type="text/javascript">
+                                                var qrcode = new QRCode("qrcode", {
+                                                                    text: "<?php echo $reservation->reservationId ?>",
+                                                                    width: 128,
+                                                                    height: 128,
+                                                                    colorDark : "#000000",
+                                                                    colorLight : "#ffffff",
+                                                                    correctLevel : QRCode.CorrectLevel.H
+                                                                });
+                                                qrcode.clear(); // clear the code.
+                                                qrcode.makeCode("<?php echo $reservation->reservationId ?>"); // make another code.
+                                             </script>
+                                          </td>
+                                       </tr>
+                                    </table>
+                                    <h3 class="pull-right">Order # <?php echo $reservation->reservationId ?></h3>
+                                    <h3 class="pull-right">Palmyra <?php echo $hotel->name ?></h3>
+                                    <span class="pull-right"><?php echo $hotel->Adresse ?></h3>
+                                 </div>
+                                 <hr>
+                                 <table width="100%">
+                                    <tr>
+                                       <td>
+                                          <address>
+                                             <strong>From :</strong> <?php echo $reservation->checkin ?> 14:00 <br>
+                                             <strong>To :</strong> <?php echo $reservation->checkout ?> 12:00 <br>
+                                             <strong>Stay :</strong> <?php echo $reservation->nights ?> nghits <br>
+                                             <strong>Pension:</strong> <?php echo $reservation->pension ?><br>
+                                          </address>
+                                       </td>
+                                       <td>
+                                          <address>
+                                             <strong>Shipped To:</strong><br>
+                                             <?php echo $reservation->client->name ?><br>
+                                             <?php echo $reservation->client->address ?><br>
+                                             <?php echo $reservation->client->city ?> <?php echo $reservation->client->country ?><br>
+                                             <?php echo $reservation->client->zip ?>
+                                          </address>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>
+                                          <address>
+                                             <strong>Payment Method:</strong><br>
+                                             Visa ending **** 4242<br>
+                                             <?php echo $reservation->client->email ?>
+                                          </address>
+                                       </td>
+                                       <td width="30%">
+                                          <address>
+                                             <strong>Order Date:</strong><br>
+                                             <?php echo $reservation->createdDTM ?><br><br>
+                                          </address>
+                                       </td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
                         </div>
-                </div>
-                <!-- End position -->
-
-                <div class="container margin_60">
                         <div class="row">
-                                <div class="col-lg-8 add_bottom_15">
-                                        <div class="form_title">
-                                                <h3><strong>1</strong>Your Details</h3>
-                                                <p>
-                                                        Name of guests 
-                                                </p>
-                                        </div>
-                                        <div class="step">
-                                                <style type="text/css">
-                                                       fieldset
-                                                        {
-                                                          background-color:#fbe8aa75 ;
-                                                         
-                                                          padding:16px; 
-                                                        }
-                                                        legend
-                                                        {
-                                                          margin-bottom:0px;
-                                                          margin-left:16px;
-                                                        }
+                           <div class="col-lg-12">
+                              <div class="panel panel-default">
+                                 <div class="panel-heading">
+                                    <h3 class="panel-title"><strong>Order summary</strong></h3>
+                                 </div>
+                                 <div class="panel-body">
+                                    <div class="table-responsive">
+                                       <table class="table table-condensed" border="1px" width="100%">
+                                          <thead>
+                                             <tr>
+                                                <td width="5%"><strong>N°</strong></td>
+                                                <td width="20%"><strong>Item</strong></td>
+                                                <td class="text-center" width="5%"><strong>Adult</strong></td>
+                                                <td class="text-center" width="5%"><strong>child</strong></td>
+                                                <td class="text-center" width="20%"><strong>Guests</strong></td>
+                                                <td class="text-center" width="25%"><strong>Options</strong></td>
+                                                <td class="text-center" width="10%" ><strong>Price</strong></td>
+                                             </tr>
+                                          </thead>
+                                          <tbody>
+                                             <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                                             <?php foreach ( $reservation->details as $detail ) {  ?>
+                                             <tr>
+                                                <td><?php echo $detail->detailId ?></td>
+                                                <td><?php echo $detail->room->titre ?></td>
+                                                <td class="text-center"><?php echo $detail->adult ?></td>
+                                                <td class="text-center"><?php echo $detail->children ?></td>
+                                                <td> <?php foreach ( json_decode($detail->guests) as $gt) { echo '<li>'.$gt.'</li>' ; }  ?>   </td>
+                                                <td >
+                                                   <ul>
+                                                      <?php foreach ($detail->opts as $option ){ echo "<li>".$option->option."</li>" ; } ?>
+                                                   </ul>
+                                                </td>
+                                                <td class="text-center"><?php echo $detail->price ?> <sup>DT</sup></td>
+                                             </tr>
+                                             <?php } ?>
+                                          </tbody>
+                                       </table>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-xxl-4">
+                <div class="card">
+                        <div class="card-header">
+                                <div class="card-actions float-end">
+                                        <a href="#" class="me-1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-refresh-cw align-middle"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                                        </a>
+                                        <div class="d-inline-block dropdown show">
+                                                <a href="#" data-bs-toggle="dropdown" data-bs-display="static">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical align-middle"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+                                                </a>
 
-                                                </style>
+                                                <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="#">Action</a>
+                                                        <a class="dropdown-item" href="#">Another action</a>
+                                                        <a class="dropdown-item" href="#">Something else here</a>
+                                                </div>
+                                        </div>
+                                </div>
+                                <h5 class="card-title mb-0"><?php echo $reservation->client->name ?></h5>
+                        </div>
+                        <div class="card-body">
+                                <div class="row g-0">
+                                        <div class="col-sm-3 col-xl-12 col-xxl-4 text-center">
+                                                <img src="https://www.palmyrahotels.tn/img/avatars/<?php echo $reservation->client->avatar ?>" width="64" height="64" class="rounded-circle mt-2" alt="<?php echo $reservation->client->name ?>">
+                                        </div>
+                                        <div class="col-sm-9 col-xl-12 col-xxl-8">
+                                                <strong>Address</strong>
+                                                <p><?php echo $reservation->client->address ?>
+                                                <?php echo $reservation->client->country ?>
+                                                <?php echo $reservation->client->zip ?></p>
                                                 
-                                        <?php foreach ($reservation->details as $detail) {  ?>
-                                                 <legend><small>Room N°<?php echo $detail->detailId ?></small></legend>
-                                        <fieldset style="">
+                                        </div>
+                                </div>
+
+                                <table class="table table-sm my-2">
+                                        <tbody>
+                                                <tr>
+                                                        <th>Name</th>
+                                                        <td><?php echo $reservation->client->name ?></td>
+                                                </tr>
+                                                <tr>
+                                                        <th>Country</th>
+                                                        <td><?php echo $reservation->client->country ?></td>
+                                                </tr>
+                                                <tr>
+                                                        <th>Country code</th>
+                                                        <td><?php echo $reservation->client->country_code ?></td>
+                                                </tr>
+                                                <tr>
+                                                        <th>Phone</th>
+                                                        <td><?php echo $reservation->client->phone ?></td>
+                                                </tr>
+                                                <tr>
+                                                        <th>Email</th>
+                                                        <td><?php echo $reservation->client->email ?></td>
+                                                </tr>
                                                
                                                 
-                                                <div class="row">
-                                                        <?php for ($i=0 ; $i <  $detail->adult ; $i++) {  ?>
-                                                        <div class="col-sm-6">
-                                                                <div class="form-group">
-                                                                        <label>Guest <?php echo $i+1 ?>
-                                                                        
-                                                                        <input type="checkbox" 
-                                                                        name="child_" 
-                                                                        
-                                                                        class="child child_<?php echo $detail->detailId ?>" 
-                                                                        <?php if ($i == 0 ) {  echo 'style="display: none;" '; } ?> 
-                                                                        onclick="childPerRoom(<?php echo $detail->detailId ?>);child() ;"
-                                                                        data-detail="<?php echo $detail->detailId ?>" >
-
-                                                                        <small <?php if ($i == 0 ) {  echo 'style="display: none;" '; } ?>>children</small>  
-                                                                        
-                                                                        </label>
-                                                                        <input 
-                                                                        type="text" 
-                                                                        class="form-control" 
-                                                                        id="guest_" 
-                                                                        name="guest_<?php echo $detail->detailId ?>_<?php echo $i+1 ?>"
-                                                                        required
-                                                                        >
-                                                                </div>
-                                                        </div> 
-
-
-                                                        <?php } ?>
-
-                                                <?php if ($detail->adult == 1 ) { ?> 
-                                                       <input 
-                                                        type="hidden" 
-                                                        class="Pax Pax_<?php echo $detail->detailId ?>" 
-                                                        id="Pax_<?php echo $detail->detailId ?>" 
-                                                        value="<?php echo ( ($detail->prices->pensionPrice + $detail->prices->supS) ) ?>"
-                                                        data-capacity = "<?php echo $detail->adult + $detail->children  ?>"
-                                                        data-currentPrice = "<?php echo ( $detail->prices->pensionPrice + $detail->prices->supS )*( $detail->adult + $detail->children )  ?>" 
-                                                        >
-
-                                                        <input 
-                                                        type="hidden" 
-                                                        class="rommP roomP_<?php echo $detail->detailId ?>" 
-                                                        id="rommP_<?php echo $detail->detailId ?>" 
-                                                        value="<?php echo( $detail->prices->pensionPrice + $detail->prices->supS )*( $detail->adult + $detail->children ) ?>" 
-                                                        >
-                                                 <?php } ?> 
-                                                 <?php if ($detail->adult > 1 ) { ?> 
-                                                       <input 
-                                                        type="hidden" 
-                                                        class="Pax Pax_<?php echo $detail->detailId ?>" 
-                                                        id="Pax_<?php echo $detail->detailId ?>" 
-                                                        value="<?php echo ( ($detail->prices->price + $detail->prices->supS) ) ?>"
-                                                        data-capacity = "<?php echo $detail->adult + $detail->children  ?>"
-                                                        data-currentPrice = "<?php echo ( $detail->prices->price + $detail->prices->supS )*( $detail->adult + $detail->children )  ?>" 
-                                                        >
-
-                                                        <input 
-                                                        type="hidden" 
-                                                        class="rommP roomP_<?php echo $detail->detailId ?>" 
-                                                        id="rommP_<?php echo $detail->detailId ?>" 
-                                                        value="<?php echo( $detail->prices->price + $detail->prices->supS )*( $detail->adult + $detail->children ) ?>" 
-                                                        >
-                                                 <?php } ?>
-
-
-                                                </div>
-                                         <?php if (!empty($detail->options) ) {  ?>       
-                                        <table class="table table-striped options_cart">
-                                                <thead>
-                                                    <tr>
-                                                        <th colspan="3">
-                                                            Add options / Services
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                        
-                                                        <?php foreach ($detail->options as $option) {  ?>
-                                                               <?php echo $option->option ?>
-                                                                 <tr>
-                                                                <td style="width:10%">
-                                                                     <?php echo $option->icon ?> 
-                                                                </td>
-                                                                <td style="width:60%">
-                                                                    <?php echo $option->option ?> <strong>+<?php echo $option->price ?><sup>DT</sup></strong>
-                                                                </td>
-                                                                <td style="width:35%">
-                                                                    <label class="switch-light switch-ios float-right">
-                                                                        <input type="checkbox" class="option_" id="option_<?php echo $detail->detailId ?>" data-price="<?php echo $option->price ?>" value="<?php echo $option->price ?>" data-detail="<?php echo $detail->detailId ?>" onclick="calculate() " >
-                                                                        <span>
-                                                                        <span>No</span>
-                                                                        <span>Yes</span>
-                                                                        </span>
-                                                                        <a></a>
-                                                                    </label>
-                                                                </td>
-                                                            </tr>
-                                                        <?php  }  ?>
-                                                </tbody>
-                                        </table>
-                                        <?php  }  ?>
-                                                <div class="text-right">
-
-                                                        <span> Adult :
-                                                                <strong id="nbAdult_<?php echo $detail->detailId ?>" >
-                                                                        <?php echo $detail->adult ?>
-                                                                </strong>   
-                                                        </span>
-                                                       <br>
-                                                       <span>   Children
-                                                                <strong id="nbChild_<?php echo $detail->detailId ?>" >
-                                                                         <?php echo $detail->children ?>
-                                                                </strong>   
-                                                        </span>
-                                                       <br>
-                                                       <span class="bg-white text-right">  Price : 
-                                                                        <strong id="detailPrice_<?php echo $detail->detailId ?>" >
-                                                                                <?php if ($detail->adult == 1 ) { 
-                                                                                        echo ( ($detail->prices->pensionPrice + $detail->prices->supS) * $detail->adult) ;
-                                                                                }
-                                                                                elseif ($detail->adult > 1 ) { 
-                                                                                 echo ( ($detail->prices->price + $detail->prices->supS) * $detail->adult) ;
-                                                                                 }  ?>
-                                                                        </strong>   
-                                                                        <sup>DT/Per night</sup>
-                                                                </span> 
-                                                </div>  
-                                        </fieldset>
-                                                <?php  } ?>
-                                        </div>
-                                        <!--End step -->
-
-                                        <div class="form_title">
-                                                <h3><strong>2</strong>Payment Information</h3>
-                                                <p>
-                                                        Mussum ipsum cacilds, vidis litro abertis.
-                                                </p>
-                                        </div>
-                                        <div class="step">
-                                                <div class="form-group">
-                                                        <label>Name on card</label>
-                                                        <input class="form-control" id="name_card_bookign" name="name_card_bookign" required>
-                                                </div>
-                                                <div class="row">
-                                                        <div class="col-md-6 col-sm-12">
-                                                                <div class="form-group">
-                                                                        <label>Card number</label>
-                                                                        <input type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="xxxx xxxx xxxx xxxx"  id="card_number" name="card_number" class="form-control" required>
-                                                                </div>
-                                                        </div>
-                                                        <div class="col-md-6 col-sm-12">
-                                                                <img src="<?php echo base_url() ?>assets/img/cards-1.png" width="207" height="43" alt="Cards" class="cards" required>
-                                                        </div>
-                                                </div>
-                                                <div class="row">
-                                                        <div class="col-md-6">
-                                                                <label>Expiration date</label>
-                                                                <div class="row">
-                                                                        <div class="col-md-6">
-                                                                                <div class="form-group">
-                                                                                        <input type="number" pattern="[0-9\s]{13,19}" maxlength="4" min="<?php echo date('m') ?>" id="expire_month" name="expire_month" class="form-control"  placeholder="MM" required>
-                                                                                </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                                <div class="form-group">
-                                                                                        <input type="number" pattern="[0-9\s]{13,19}" maxlength="4" min="<?php echo date('Y') ?>" id="expire_year" name="expire_year" class="form-control" placeholder="Year" required>
-                                                                                </div>
-                                                                        </div>
-                                                                </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                        <label>Security code</label>
-                                                                        <div class="row">
-                                                                                <div class="col-4">
-                                                                                        <div class="form-group">
-                                                                                                <input type="number" pattern="[0-9\s]{13,19}" maxlength="3" id="ccv" name="ccv" class="form-control" placeholder="CCV" required>
-                                                                                        </div>
-                                                                                </div>
-                                                                                <div class="col-8">
-                                                                                        <img src="<?php echo base_url() ?>assets/img/icon_ccv-1.gif" width="50" height="29" alt="ccv"><small>Last 3 digits</small>
-                                                                                </div>
-                                                                        </div>
-                                                                </div>
-                                                        </div>
-                                                </div>
-                                                <!--End row -->
-
-                                                <hr>
-
-                                                <h4>Or Bank Transfer</h4>
-                                                <p>
-                                                        Lorem ipsum dolor sit amet, vim id accusata sensibus, id ridens quaeque qui. Ne qui vocent ornatus molestie, reque fierent dissentiunt mel ea.
-                                                </p>
-                                                <p>
-                                                       
-                                                </p>
-                                        </div>
-                                        <!--End step -->
-
-                                    
-                                        
-                                        <!--End step -->
-
-                                        <div id="policy">
-                                                <h4>Cancellation policy</h4>
-                                                <div class="form-group">
-                            <label class="container_check">
-                                I accept terms and conditions and general policy.
-                                <input type="checkbox" required>
-                                <span class="checkmark"></span>
-                            </label>
+                                                <tr>
+                                                        <th>Status</th>
+                                                        <td><span class="badge bg-success">Active</span></td>
+                                                </tr>
+                                        </tbody>
+                                </table>
                         </div>
-                      
                 </div>
         </div>
-
-                                <aside class="col-lg-4">
-                                        <div class="box_style_1">
-                                                <h3 class="inner">- Summary -</h3>
-                                                <table class="table table_summary">
-                                                        <tbody>
-                                                                <tr>
-                                                                        <td>
-                                                                                Check in
-                                                                        </td>
-                                                                        <td class="text-right">
-                                                                                <?php echo $reservation->checkin ?>
-                                                                        </td>
-                                                                </tr>
-                                                                <tr>
-                                                                        <td>
-                                                                                Check out
-                                                                        </td>
-                                                                        <td class="text-right">
-                                                                                 <?php echo $reservation->checkout ?>
-                                                                        </td>
-                                                                </tr>
-                                                                <tr>
-                                                                        <td>
-                                                                                Pension
-                                                                        </td>
-                                                                        <td class="text-right">
-                                                                                 <?php echo $reservation->pension ?>
-                                                                        </td>
-                                                                </tr>
-                                                                <tr>
-                                                                        <td>
-                                                                                Rooms
-                                                                        </td>
-                                                                        <td class="text-right">
-                                                                                <?php echo COUNT($reservation->details) ?>
-                                                                        </td>
-                                                                </tr>
-                                                                <tr>
-                                                                        <td>
-                                                                                Nights
-                                                                        </td>
-                                                                        <td class="text-right">
-                                                                                 <?php echo $reservation->nights ?>
-                                                                        </td>
-                                                                </tr>
-                                                                <tr>
-                                                                        <td>
-                                                                                Adults
-                                                                        </td>
-                                                                        <td class="text-right" id="nbAdult" >
-                                                                                <?php echo $reservation->adult ?>
-                                                                        </td>
-                                                                        
-                                                                </tr>
-                                                                <tr>
-                                                                        <td>
-                                                                                Children (2-12 ago)
-                                                                        </td>
-                                                                        <td class="text-right" id="nbChild" >
-                                                                              0  
-                                                                        </td>
-
-                                                                </tr>
-                                                                <tr>
-                                                                        <td>
-                                                                                Options
-                                                                        </td>
-                                                                        <td class="text-right" >
-                                                                               <span id="priceOptions_total" > 0</span><sup>DT</sup>
-                                                                        </td>
-                                                                </tr>
-                                                                <tr class="total">
-                                                                        <td>
-                                                                                Total cost
-                                                                        </td>
-                                                                        <td class="text-right">
-                                                                               <span id="cost" > 0</span><sup>DT</sup>
-                                                                        </td>
-                                                                </tr>
-                                                        </tbody>
-                                                </table>
-                                                <button type="submit" class="btn_full" >Book now</button>
-                                                
-                                        </div>
-                                        <div class="box_style_4">
-                                                <i class="icon_set_1_icon-57"></i>
-                                                <h4>Need <span>Help?</span></h4>
-                                                <a href="tel://00216<?php echo $hotel->phone ?>" class="phone">+216<?php echo $hotel->phone ?></a>
-                                                <small>Monday to Friday 9.00am - 7.30pm</small>
-                                        </div>
-                                </aside>
-
-                        </div>
-                        <!--End row -->
-                </div>
-                <!--End container -->
-        </main>
-</form>
-
-
-        <script type="text/javascript">
-
-                child() ;
-
-               function calculate () {
-
-                        var roomsPrice = 0 ;
-                        $(".rommP").each( function(){                                
-                                roomsPrice +=  parseInt( $(this).val() )  ; 
-                                $("#cost").html( parseInt(roomsPrice) * parseInt(<?php echo $reservation->nights ?>)  )  ;
-                        });
-                        
-                        
-                        var optionsPrice = 0 ;
-                        $(".option_").each( function(){
-                                if( $(this).is(":checked")  ){ 
-                                        optionsPrice += parseInt($(this).val()) ; 
-                             }
-                             $("#priceOptions_total").html(optionsPrice) ;
-                             $("#cost").html( ( parseInt(roomsPrice) + parseInt(optionsPrice) ) * parseInt(<?php echo $reservation->nights ?>) )  ;
-                        });
-
-                        
-                }
-
-                
-                function child()
-                {
-                
-                var child = 0 ;
-                 var adult = 0 ;
-                
-                $(".child").each( function(){
-                        if( $(this).is(":checked")  ){ 
-                                child += 1 ;           
-                     }
-                     $("#nbChild").html(child) ;
-                       
-                       if( !($(this).is(":checked"))  )
-                                { adult += 1 ; 
-                                 
-                     }
-                      $("#nbAdult").html(adult) ;
-                        });  
-
-                       calculate () ;
-                }
-
-                function childPerRoom(detailId)
-                {
-                
-                var child = 0 ;
-                 var adult = 0 ;
-                
-                $(".child_"+detailId).each( function(){
-                        if( $(this).is(":checked")  ){ 
-                                child += 1 ;           
-                     }
-                     $("#nbChild_"+detailId).html(child) ;
-                       
-                       if( !($(this).is(":checked"))  )
-                                { adult += 1 ; 
-                                 
-                     }
-                      $("#nbAdult_"+detailId).html(adult) ;
-                        });   
-
-                price = 0 ; 
-                        
-                        if(child ==0 )
-                                {
-                                price= adult * parseInt( $(".Pax_"+detailId).val() )  ;
-                                }
-                        if(adult == 1 && child == 1  )
-                                { 
-                                price= (adult*parseInt( $(".Pax_"+detailId).val() ) )  + (child * (parseInt( parseInt( $(".Pax_"+detailId).val() ) - parseInt( $(".Pax_"+detailId).val() )*0.3) ) ) ;  
-                                }
-                        if(adult == 2 && child == 1  )
-                                { 
-                                price= (adult*parseInt( $(".Pax_"+detailId).val() ) )  + (child * (parseInt( parseInt( $(".Pax_"+detailId).val() ) - parseInt( $(".Pax_"+detailId).val() )*0.5) ) ) ;  
-                                }
-                        if(adult == 1 & child == 2  )
-                                { 
-                                price= (adult*parseInt( $(".Pax_"+detailId).val() ) )  + (child * (parseInt( parseInt( $(".Pax_"+detailId).val() ) - parseInt( $(".Pax_"+detailId).val() )*0.5) ) ) ;
-                                }
-
-
-                
-                 $(".roomP_"+detailId).val(price)   ;
-                 $("#detailPrice_"+detailId).html(price) ;
-                 
-                     
-                calculate () ;
-                }
-                                                             
-
-               
-                      
-                 
-                
-                
-                
-
-        </script>
+      </div>
+   </div>
+</main>

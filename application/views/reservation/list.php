@@ -53,7 +53,7 @@
 		                                            <?php if ($book->statut == 1  ){  ?>
 		                                                <span class="badge bg-warning">Pending</span>
 		                                            <?php } ?></td>
-												<td><i class="ion ion-ios-eye me-2"></i> </td>
+												<td><a href="<?php echo base_url() ?>Reservation/view/<?php echo $book->reservationId ?>"><i class="ion ion-ios-eye me-2"></i></a> </td>
 											</tr>
 										<?php } ?> 
 										</tbody>
