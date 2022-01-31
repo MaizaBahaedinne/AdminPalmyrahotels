@@ -61,7 +61,7 @@ class Acceuil extends BaseController
          $this->loadViews("acceuil", $this->global,  $data , NULL);
        
        
-            //   $this->send_mail("maizabahaedinne@gmail.com", "Testo"  , "" , "Test Mail" )   ;
+          
         
 
     }
