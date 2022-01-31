@@ -284,10 +284,10 @@
                                                 <span class="badge bg-success">Done</span>
                                             <?php } ?>
                                             <?php if ($order->statut == 1  ){  ?>
-                                                <span class="badge bg-danger">Blocked</span>
+                                                <span class="badge bg-danger">Pending</span>
                                             <?php } ?>
                                             <?php if ($order->statut == 0  ){  ?>
-                                                <span class="badge bg-warning">Pending</span>
+                                                <span class="badge bg-danger">Blocked</span>
                                             <?php } ?>
                                             </td>
                                             <td class="d-none d-md-table-cell"><?php echo $order->hotel->name ?></td>
