@@ -284,7 +284,7 @@
                                                 <span class="badge bg-success">Done</span>
                                             <?php } ?>
                                             <?php if ($order->statut == 1  ){  ?>
-                                                <span class="badge bg-danger">Pending</span>
+                                                <span class="badge bg-warning">Pending</span>
                                             <?php } ?>
                                             <?php if ($order->statut == 0  ){  ?>
                                                 <span class="badge bg-danger">Blocked</span>
