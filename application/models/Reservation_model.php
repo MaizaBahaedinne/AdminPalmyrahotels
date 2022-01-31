@@ -42,7 +42,7 @@ class Reservation_model extends CI_Model
         $this->db->where('YEAR(BaseTbl.checkin) = YEAR(NOW()) ' );
         $this->db->where('MONTH(BaseTbl.checkin) = ' , $month );
 
-        if($statut != ''){   $this->db->where('BaseTbl.statut = ' , $statut ); } 
+        if($statut != ''){   $this->db->where('BaseTbl.statut in '.$statut ); } 
 
         $this->db->group_by('MONTH(BaseTbl.checkin)  ' );
         $query = $this->db->get();

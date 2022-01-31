@@ -1,3 +1,7 @@
+    <!-- CUSTOM CSS -->
+    <link href="css/custom-1.css" rel="stylesheet">
+
+    
 <main class="content">
                 <div class="container-fluid">
 

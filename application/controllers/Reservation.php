@@ -31,12 +31,12 @@ class Reservation extends BaseController
      {
             $this->global['pageTitle'] = 'Bookings';
 
-            $data['bookings'] =   $this->reservation_model->Bookings($hotelId , 2 );
+            $data['bookings'] =   $this->reservation_model->Bookings($hotelId  );
             foreach ($data['bookings'] as $order  )
-        {
-            $order->client = $this->user_model->user( $order->createdBy );
-            $order->hotel = $this->hotel_model->hotel( $order->hotelId );
-        }
+                {   
+                    $order->client = $this->user_model->user( $order->createdBy );
+                    $order->hotel = $this->hotel_model->hotel( $order->hotelId );
+                }
           
             
             

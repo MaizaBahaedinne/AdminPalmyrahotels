@@ -26,6 +26,7 @@
 												<th>Start date</th>
 												<th>Nights</th>
 												<th>Price</th>
+												<th>statut</th>
 												<th>Action</th>
 											</tr>
 										</thead>
@@ -43,7 +44,15 @@
 			                                    $date2 = new DateTime( $book->checkout ) ;
 			                                    $interval = $date1->diff($date2);
 			                                     echo $interval->d ; ?></td>
-			                                     <td><?php echo $book->checkin ?> DT</td>
+			                                     <td><?php echo $book->price ?> DT</td>
+			                                     <td> 
+			                                     	<?php if ($book->statut == 2  ){  ?>
+                                                		<span class="badge bg-success">Done</span>
+		                                            <?php } ?>
+		                                            
+		                                            <?php if ($book->statut == 1  ){  ?>
+		                                                <span class="badge bg-warning">Pending</span>
+		                                            <?php } ?></td>
 												<td><i class="ion ion-ios-eye me-2"></i> </td>
 											</tr>
 										<?php } ?> 
