@@ -74,6 +74,52 @@ class Reservation extends BaseController
             
             $this->loadViews("reservation/details", $this->global, $data , NULL);
      }
+
+
+
+      public function approuvebooking ($reservationId) 
+     {
+            
+            $data['reservation'] =  $this->reservation_model->reservation($reservationId);
+            $data['reservation']->client =  $this->user_model->user($data['reservation']->createdBy );
+            $data['reservation']->hotel =  $this->hotel_model->hotel($data['reservation']->hotelId );
+            $data['reservation']->details =  $this->reservation_model->reservationDetails($reservationId);
+
+            $data['reservation']->details =  $this->reservation_model->reservationDetails($reservationId);
+                foreach ($data['reservation']->details as $detail ) 
+                    {       
+                        $detail->prices = $this->hotel_model->roomMsPrice($data['reservation']->hotelId ,  $data['reservation']->checkin ,  $data['reservation']->pension   ) ;
+                        $detail->room = $this->hotel_model->Room( $detail->roomId ) ;
+                        $detail->opts  = $this->hotel_model->roomOptionsListing(  str_replace("\"", "", $detail->options )  )  ;
+
+                    }
+
+
+         $reservationInfo = array(  
+                        'approuvedBy' =>  $this->input->post("TTadults")  ,
+                        'children'  =>  $this->input->post("TTchilds" )  ,
+                        'price'  =>  $this->input->post("TTprice")  ,
+                        'statut' =>  1 ,
+                        'createdBy' => $this->vendorId ,
+                        'createdDTM'=> date('Y-m-d H:i:s'), 
+                      );
+                 $this->reservation_model->editContact($reservationInfo , $reservationId); 
+
+                $content = $this->load->view('reservation/printFacture', $data , true);
+
+                 if( $this->send_mail(
+                    $data['reservation']->client->email  , 
+                    "Booking N".$data['reservation']->reservationId." [Palmyra ".$data['reservation']->hotel->name."] " ,
+                     ""  ,
+                    $content ,  "booking@palmyrahotels.tn" ,  
+                    "Booking2022" , 
+                    $data['reservation']->hotel->mail ) ) 
+                 { 
+
+                        redirect('Reservation/mybookings');
+                 }
+            
+     }
      
 
 }

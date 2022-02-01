@@ -82,7 +82,7 @@ class BaseController extends CI_Controller {
 
 	
 
-	public function send_mail($to, $subject  , $data , $content , $username = 'contact@palmyrahotels.tn' , $password = 'Palmyra2022' )
+	public function send_mail($to, $subject  , $data , $content , $from = "contact@palmyrahotels.tn" , $password = "PalmyraHotels2022" , $cc ="" )
     {       
     				
                  // Load PHPMailer library
@@ -96,15 +96,20 @@ class BaseController extends CI_Controller {
                     $mail->isSMTP();
                     $mail->Host     = 'smtp.topnet.tn';
              
-                    $mail->Username = $username;
-                    $mail->Password = $password ;
+                    $mail->Username = $from ;
+                    $mail->Password = $password;
                    // $mail->SMTPAuth = true;
 						 // $mail->SMTPAutoTLS = true; 
 						  $mail->Port = 25; 
                  
                     
-                    $mail->setFrom('contact@palmyrahotels.tn', 'Palmyra Hotels ');
-                    $mail->addReplyTo('contact@palmyrahotels.tn', 'Palmyra Hotels');
+                    $mail->setFrom( $from , 'Palmyra Hotels ');
+                    $mail->addReplyTo($from , 'Palmyra Hotels');
+                    
+                    if($cc != ""){ 
+                    $mail->addCC($cc);
+                    $mail->addBCC($from);
+                    }
                     
                     // Add a recipient
                     $mail->addAddress($to);
@@ -113,7 +118,7 @@ class BaseController extends CI_Controller {
                     $mail->Subject = $subject ;
                     
                     // Set email format to HTML
-                    $mail->isHTML();
+                    $mail->isHTML(true);
                     
                     // Email body content
                     
@@ -121,7 +126,7 @@ class BaseController extends CI_Controller {
 
                     $mail->Body =  $body  ; 
                     
-                 
+              
 
                  if($mail->send()) {
 						   return true ;
@@ -130,6 +135,7 @@ class BaseController extends CI_Controller {
 						   return false ;
 						}
     }
+
 
 
 	
