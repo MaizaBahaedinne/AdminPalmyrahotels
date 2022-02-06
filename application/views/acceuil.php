@@ -214,7 +214,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <h5 class="card-title mb-0">Booking By hotel</h5>
+                                    <h5 class="card-title mb-0">Search By hotel</h5>
                                 </div>
                                 <div class="card-body d-flex">
                                     <div class="align-self-center w-100">
@@ -229,7 +229,7 @@
                                                 <?php foreach ($hotels as $hotel ){ ?>
                                                 <tr>
                                                     <td><i class="fas fa-circle text-primary fa-fw"></i> <?php echo $hotel->name ?></td>
-                                                    <td class="text-end"><?php echo $hotel->salesByHotel->countRes ?></td>
+                                                    <td class="text-end"><?php echo $hotel->searchByHotel->countRes ?></td>
                                                 </tr>
                                                <?php  } ?>
                                             </tbody>
@@ -344,18 +344,26 @@
                 data: {
                     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
                     datasets: [{
+                            label: "Searchs",
+                            fill: true,
+                           
+                            borderColor: window.theme.warning,
+                            borderWidth: 2,
+                            data: [<?php for( $i = 1;  $i <12 ; $i++ )  {  if(  empty($searchs[$i])  ){  echo "0,";  } else {   echo $searchs[$i]->countRes.',' ;}  } ?>]
+                        },
+                        {
                             label: "Sales",
                             fill: true,
-                            backgroundColor: window.theme.primary,
                             borderColor: window.theme.primary,
+                            
                             borderWidth: 2,
                             data: [<?php for( $i = 1;  $i <12 ; $i++ )  {  if(  empty($sales[$i])  ){  echo "0,";  } else {   echo $sales[$i]->countRes.',' ;}  } ?>]
                         },
                         {
                             label: "Orders ",
                             fill: true,
-                            backgroundColor: "rgba(0, 0, 0, 0.05)",
-                            borderColor: "rgba(0, 0, 0, 0.05)",
+                            
+                            borderColor: window.theme.danger ,
                             borderWidth: 2,
                             data: [<?php for( $i = 1;  $i <12 ; $i++ ) {  if( empty($orders[$i])  ){ echo "0,";  } else { echo $orders[$i]->countRes.',' ; }  } ?>]
                         }
@@ -412,7 +420,7 @@
                 data: {
                     labels: [<?php foreach ($hotels as $hotel){ echo '"'.$hotel->name.'",'  ;} ?>],
                     datasets: [{
-                        data: [<?php foreach ($hotels as $hotel){ echo $hotel->salesByHotel->countRes."," ; ;} ?>],
+                        data: [<?php foreach ($hotels as $hotel){ echo $hotel->searchByHotel->countRes."," ; ;} ?>],
                         backgroundColor: [
                             window.theme.primary,
                             window.theme.warning,

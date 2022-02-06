@@ -3,7 +3,7 @@
 
 					<div class="header">
 						<h1 class="header-title">
-							Bookings
+							<?php echo $pageTitle ?>
 						</h1>
 						
 					</div>
@@ -11,7 +11,7 @@
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<h5 class="card-title">Bookings</h5>
+									<h5 class="card-title"><?php echo $pageTitle ?></h5>
 									
 								</div>
 								<div class="card-body">

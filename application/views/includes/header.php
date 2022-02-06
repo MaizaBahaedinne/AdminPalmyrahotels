@@ -148,6 +148,32 @@
                         </a>
                      
                     </li>
+                    <li class="sidebar-item">
+                        <a data-bs-target="#search" data-bs-toggle="collapse" class="sidebar-link collapsed">
+                            <i class="align-middle me-2 far fa-fw fa-calendar-alt"></i> <span class="align-middle">Searchs</span>
+                        </a>
+                        <ul id="search" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                            <?php foreach ($hotels as $hotel ) {
+                                echo '<li class="sidebar-item"><a class="sidebar-link" href="'.base_url().'/Reservation/searchs/'.$hotel->hotelId.'">'.$hotel->name.'</a></li>' ;
+                            }?>
+                           
+                            
+                        </ul>
+                       
+                    </li>
+                    <li class="sidebar-item">
+                        <a data-bs-target="#order" data-bs-toggle="collapse" class="sidebar-link collapsed">
+                            <i class="align-middle me-2 far fa-fw fa-calendar-alt"></i> <span class="align-middle">Orders</span>
+                        </a>
+                        <ul id="order" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                            <?php foreach ($hotels as $hotel ) {
+                                echo '<li class="sidebar-item"><a class="sidebar-link" href="'.base_url().'/Reservation/Orders/'.$hotel->hotelId.'">'.$hotel->name.'</a></li>' ;
+                            }?>
+                           
+                            
+                        </ul>
+                       
+                    </li>
                 </ul>
             </div>
         </nav>

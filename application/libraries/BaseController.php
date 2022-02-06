@@ -201,6 +201,7 @@ class BaseController extends CI_Controller {
     	$this->load->model('bar_model');
       $this->load->model('user_model');
       $this->load->model('reservation_model');
+      $this->load->model('search_model');
 
 
     				$user = $this->user_model->user($this->vendorId) ;
@@ -209,6 +210,7 @@ class BaseController extends CI_Controller {
     			 $headerInfo['hotels'] = $this->hotel_model->hotelListing( "" , $user->hotels) ;
     			 foreach ($headerInfo['hotels'] as $hotel) {
     			 	 $hotel->salesByHotel = $this->reservation_model->salesByHotel($hotel->hotelId) ;
+    			 	 $hotel->searchByHotel = $this->search_model->searchByHotel($hotel->hotelId) ;
     			 }
 
     			 

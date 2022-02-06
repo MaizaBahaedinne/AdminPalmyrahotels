@@ -7,12 +7,72 @@ class Search_model extends CI_Model
 
 
 
-            /**
+   /**
+     * This function is used to get the user listing count
+     * @param string $searchText : This is optional search text
+     * @return number $count : This is row count
+     */
+    function serachByMonth( $month , $statut = '' )
+    {
+        $this->db->select('count(BaseTbl.checkin) countRes , MONTH(BaseTbl.checkin) monthRes  ');
+        $this->db->from('tbl_search as BaseTbl');
+        $this->db->where('YEAR(BaseTbl.checkin) = YEAR(NOW()) ' );
+        $this->db->where('MONTH(BaseTbl.checkin) = ' , $month );
+
+        if($statut != ''){   $this->db->where('BaseTbl.statut in ('.$statut.')' ); } 
+
+        $this->db->group_by('MONTH(BaseTbl.checkin)  ' );
+        $query = $this->db->get();
+        return $query->row();
+    }
+
+             /**
+     * This function is used to get the user listing count
+     * @param string $searchText : This is optional search text
+     * @return number $count : This is row count
+     */
+    function searchByHotel($hotelId , $statut = '')
+    {
+        $this->db->select('count(BaseTbl.checkin) countRes , Hotel.name   ');
+        $this->db->from('tbl_search as BaseTbl');
+        $this->db->join('tbl_hotels as Hotel' , 'BaseTbl.hotelId = Hotel.hotelId ','Left');
+        $this->db->where('YEAR(BaseTbl.checkin) = YEAR(NOW()) ' );
+        $this->db->where('BaseTbl.hotelId  = ' , $hotelId );
+        
+        if($statut != ''){   $this->db->where('BaseTbl.statut = ' , $status ); } 
+        $this->db->order_by('MONTH(BaseTbl.checkin) ASC ' );
+
+              
+
+        $query = $this->db->get();
+        return $query->row();
+    }
+
+
+              /**
+     * This function is used to get the user listing count
+     * @param string $searchText : This is optional search text
+     * @return number $count : This is row count
+     */
+    function searchs ( $hotelId = "" , $statut = '' )
+    {
+        $this->db->select('BaseTbl.* ');
+        $this->db->from('tbl_reservation as BaseTbl');
+ 
+        if($hotelId != ''){   $this->db->where('BaseTbl.hotelId = ' , $hotelId ); } 
+
+        $this->db->order_by('MONTH(BaseTbl.checkin) ASC ' );
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+
+                /**
      * This function used to get user information by id
      * @param number $userId : This is user id
      * @return array $result : This is user information
      */
-    function getSearchInfo($searchId)
+    function getSearchInfo()
     {
         $this->db->select('BaseTbl.*');
         $this->db->from('tbl_search BaseTbl');
