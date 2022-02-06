@@ -19,6 +19,7 @@
 									<table id="datatables-reponsive" class="table table-striped" style="width:100%">
 										<thead>
 											<tr>
+												<th width="5%">ID</th>
 												<th width="15%">Saison</th>
 												<th width="15%">statut</th>
 												<th>Begin</th>
@@ -36,6 +37,7 @@
 										<tbody>
 											<?php foreach ($Saisons as $saison ){ ?> 
 											<tr>
+												<td><?php echo $saison->priceId ?></td>
 												<td><?php echo $saison->titre ?> 
 												<td><?php 
 
@@ -62,11 +64,11 @@
 
 			                                     <td><?php echo $saison->price ?> </td>
 			                                     <td><?php echo $saison->supS ?> </td>
-			                                     <td><?php echo $saison->PD ?> </td>
-			                                     <td><?php echo $saison->DP ?> </td>
-			                                     <td><?php echo $saison->PC ?> </td>
-			                                     <td><?php echo $saison->ALLS ?> </td>
-			                                     <td><?php echo $saison->ALLH ?> </td>
+			                                     <td><?php if($saison->PD != null){ echo $saison->price+$saison->PD ;} ?> </td>
+			                                     <td><?php if($saison->DP != null){ echo $saison->price+$saison->DP ;} ?> </td>
+			                                     <td><?php if($saison->PC != null){ echo $saison->price+$saison->PC ;} ?> </td>
+			                                     <td><?php if($saison->ALLS != null){ echo $saison->price+$saison->ALLS ;} ?> </td>
+			                                     <td><?php if($saison->ALLH != null){ echo $saison->price+$saison->ALLH ;} ?> </td>
 
 
 												
