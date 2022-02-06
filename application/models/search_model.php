@@ -42,7 +42,7 @@ class Search_model extends CI_Model
         if($statut != ''){   $this->db->where('BaseTbl.statut = ' , $status ); } 
         $this->db->order_by('MONTH(BaseTbl.checkin) ASC ' );
 
-              
+            
 
         $query = $this->db->get();
         return $query->row();
