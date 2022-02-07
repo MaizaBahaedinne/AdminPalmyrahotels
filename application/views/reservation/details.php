@@ -126,7 +126,7 @@
                                        </ul>
                                     </td>
                                     <td class="text-center"><?php echo $detail->price ?> <sup>DT</sup></td>
-                                     <td class="text-center"><?php echo $detail->price *  $reservation->nights ?> <sup>DT</sup></td>
+                                     <td class="text-center"><?php echo $detail->price *  $reservation->nights *  $reservation->adults  ?> <sup>DT</sup></td>
                                  </tr>
                                  <?php } ?>
 
