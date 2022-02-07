@@ -42,12 +42,14 @@ class Acceuil extends BaseController
         for ($i= 1; $i < 13  ; $i++) { 
              $data['orders'][$i] = $this->reservation_model->ordersByMonth($i) ;  
              $data['sales'][$i]  = $this->reservation_model->ordersByMonth($i,2) ;
+             $data['searchs'][$i]  = $this->search_model->serachByMonth( $i ) ; 
         }
 
 
         $data['salesToday'] = $this->reservation_model->ordersByDay(2) ; 
 
         $data['ordersToday'] = $this->reservation_model->ordersByDay(0) ; 
+   
         foreach ($data['ordersToday'] as $order  )
         {
             $order->client = $this->user_model->user( $order->createdBy );

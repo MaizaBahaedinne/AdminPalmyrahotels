@@ -19,6 +19,7 @@ class Reservation extends BaseController
         parent::__construct();
         $this->load->model('hotel_model');
         $this->load->model('reservation_model'); 
+        $this->load->model('search_model'); 
         $this->load->model('user_model');  
         $this->isLoggedIn();   
     }
@@ -29,7 +30,8 @@ class Reservation extends BaseController
     
      public function bookings($hotelId) 
      {
-            $this->global['pageTitle'] = 'Bookings';
+            $hotel = $this->hotel_model->hotel( $hotelId );
+            $this->global['pageTitle'] = 'Bookings | '.$hotel->name ;
 
             $data['bookings'] =   $this->reservation_model->Bookings($hotelId  , '1,2' );
             foreach ($data['bookings'] as $order  )
@@ -42,6 +44,42 @@ class Reservation extends BaseController
             
             $this->loadViews("reservation/list", $this->global, $data , NULL);
      }
+
+    public function orders($hotelId) 
+     {
+            
+            $hotel = $this->hotel_model->hotel( $hotelId );
+            $this->global['pageTitle'] = 'Orders | '.$hotel->name ;
+
+            $data['bookings'] =   $this->reservation_model->Bookings($hotelId  , '0' );
+            foreach ($data['bookings'] as $order  )
+                {   
+                    $order->client = $this->user_model->user( $order->createdBy );
+                    $order->hotel = $this->hotel_model->hotel( $order->hotelId );
+                }
+          
+            
+            
+            $this->loadViews("reservation/list", $this->global, $data , NULL);
+     }
+
+    public function searchs($hotelId) 
+     {
+            $hotel = $this->hotel_model->hotel( $hotelId );
+            $this->global['pageTitle'] = 'Searchs | '.$hotel->name ;
+
+            $data['bookings'] =   $this->search_model->searchs($hotelId   );
+            foreach ($data['bookings'] as $order  )
+                {   
+                    $order->client = $this->user_model->user( $order->createdBy );
+                    $order->hotel = $this->hotel_model->hotel( $order->hotelId );
+                }
+          
+            
+            
+            $this->loadViews("reservation/list", $this->global, $data , NULL);
+     }
+     
 
     
 
