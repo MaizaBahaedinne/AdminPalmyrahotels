@@ -129,7 +129,10 @@
                                      <td class="text-center"><?php echo $detail->price *  $reservation->nights *  $reservation->adult  ?> <sup>DT</sup></td>
                                  </tr>
                                  <?php } ?>
-
+                              </tbody>
+                           </table>
+                           <table class="table "  width="100%" >
+                              <tbody>
                                  <tr>
                                     <td class="thick-line"></td>
                                     <td class="thick-line"></td>
