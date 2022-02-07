@@ -146,7 +146,7 @@
                                     <td class="thick-line"></td>
                                     <td class="thick-line"></td>
                                     <td class="no-line text-center"><strong>Taxe</strong></td>
-                                    <td class="no-line text-right"><?php  echo $reservation->adult * 2 ?><sup>DT</sup></td>
+                                    <td class="no-line text-right"><?php  echo $reservation->adult * 2 *  $reservation->nights ?><sup>DT</sup></td>
                                  </tr>
                                   <tr>
                                     <td class="thick-line"></td>
