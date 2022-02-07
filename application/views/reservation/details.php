@@ -155,7 +155,7 @@
                                     <td class="thick-line"></td>
                                     <td class="thick-line"></td>
                                     <td class="no-line text-center"><strong>Total</strong></td>
-                                    <td class="no-line text-right"><?php echo $reservation->price +( $reservation->adult * 2) ?><sup>DT</sup></td>
+                                    <td class="no-line text-right"><?php echo $reservation->price + ( $reservation->adults * 2) ?><sup>DT</sup></td>
                                  </tr>
                               </tbody>
                            </table>
