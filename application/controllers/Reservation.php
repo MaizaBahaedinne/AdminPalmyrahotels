@@ -77,7 +77,7 @@ class Reservation extends BaseController
           
             
             
-            $this->loadViews("reservation/list", $this->global, $data , NULL);
+            $this->loadViews("reservation/searchList", $this->global, $data , NULL);
      }
      
 
