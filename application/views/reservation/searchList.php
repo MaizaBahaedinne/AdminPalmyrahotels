@@ -26,7 +26,7 @@
 												<th>Start date</th>
 												<th>Nights</th>
 												
-												<th>Action</th>
+												<th>created </th>
 											</tr>
 										</thead>
 										<tbody>
@@ -44,7 +44,7 @@
 			                                    $interval = $date1->diff($date2);
 			                                     echo $interval->d ; ?></td>
 			                                     
-												<td><a href=""><i class="ion ion-ios-eye me-2"></i></a> </td>
+												<td><?php echo $book->createdDTM ?>  </td>
 											</tr>
 										<?php } ?> 
 										</tbody>
