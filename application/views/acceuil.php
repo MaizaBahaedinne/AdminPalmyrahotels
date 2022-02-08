@@ -349,7 +349,7 @@
                            
                             borderColor: window.theme.warning,
                             borderWidth: 2,
-                            data: [<?php for( $i = 1;  $i <12 ; $i++ )  {  if(  empty($searchs[$i])  ){  echo "0,";  } else {   echo $searchs[$i]->countRes.',' ;}  } ?>]
+                            data: [<?php for( $i = 1;  $i <13 ; $i++ )  {  if(  empty($searchs[$i])  ){  echo "0,";  } else {   echo $searchs[$i]->countRes.',' ;}  } ?>]
                         },
                         {
                             label: "Sales",
@@ -357,7 +357,7 @@
                             borderColor: window.theme.primary,
                             
                             borderWidth: 2,
-                            data: [<?php for( $i = 1;  $i <12 ; $i++ )  {  if(  empty($sales[$i])  ){  echo "0,";  } else {   echo $sales[$i]->countRes.',' ;}  } ?>]
+                            data: [<?php for( $i = 1;  $i <13 ; $i++ )  {  if(  empty($sales[$i])  ){  echo "0,";  } else {   echo $sales[$i]->countRes.',' ;}  } ?>]
                         },
                         {
                             label: "Orders ",
@@ -365,7 +365,7 @@
                             
                             borderColor: window.theme.danger ,
                             borderWidth: 2,
-                            data: [<?php for( $i = 1;  $i <12 ; $i++ ) {  if( empty($orders[$i])  ){ echo "0,";  } else { echo $orders[$i]->countRes.',' ; }  } ?>]
+                            data: [<?php for( $i = 1;  $i <13 ; $i++ ) {  if( empty($orders[$i])  ){ echo "0,";  } else { echo $orders[$i]->countRes.',' ; }  } ?>]
                         }
                     ]
                 },
