@@ -57,11 +57,11 @@ class Search_model extends CI_Model
     function searchs ( $hotelId = "" , $statut = '' )
     {
         $this->db->select('BaseTbl.* ');
-        $this->db->from('tbl_reservation as BaseTbl');
+        $this->db->from('tbl_search as BaseTbl');
  
         if($hotelId != ''){   $this->db->where('BaseTbl.hotelId = ' , $hotelId ); } 
 
-        $this->db->order_by('MONTH(BaseTbl.checkin) ASC ' );
+        $this->db->order_by('BaseTbl.checkin ASC ' );
         $query = $this->db->get();
         return $query->result();
     }
