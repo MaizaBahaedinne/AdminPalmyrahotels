@@ -16,7 +16,7 @@ class Reservation_model extends CI_Model
      * @param string $searchText : This is optional search text
      * @return number $count : This is row count
      */
-    function Bookings( $hotelId = "" , $statut = '' )
+    function Bookings( $hotelId = "" , $statut = '' , $date = '' )
     {
         $this->db->select('BaseTbl.* ');
         $this->db->from('tbl_reservation as BaseTbl');
@@ -24,8 +24,8 @@ class Reservation_model extends CI_Model
 
         if($statut != ''){   $this->db->where('BaseTbl.statut in ('.$statut.')' ); } 
         if($hotelId != ''){   $this->db->where('BaseTbl.hotelId = ' , $hotelId ); } 
-
-        $this->db->order_by('MONTH(BaseTbl.checkin) ASC ' );
+        if($date!="") {   $this->db->where('BaseTbl.checkin >= ' , $date ); } 
+        $this->db->order_by('MONTH(BaseTbl.checkin) DESC ' );
         $query = $this->db->get();
         return $query->result();
     }

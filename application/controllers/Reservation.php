@@ -28,12 +28,12 @@ class Reservation extends BaseController
   
 
     
-     public function bookings($hotelId) 
+     public function bookings($hotelId = "" ) 
      {
             $hotel = $this->hotel_model->hotel( $hotelId );
             $this->global['pageTitle'] = 'Bookings | '.$hotel->name ;
 
-            $data['bookings'] =   $this->reservation_model->Bookings($hotelId  , '1,2' );
+            $data['bookings'] =   $this->reservation_model->Bookings($hotelId  , '1,2' , date("Y-m-d") );
             foreach ($data['bookings'] as $order  )
                 {   
                     $order->client = $this->user_model->user( $order->createdBy );
