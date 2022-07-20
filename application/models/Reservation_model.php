@@ -24,7 +24,7 @@ class Reservation_model extends CI_Model
 
         if($statut != ''){   $this->db->where('BaseTbl.statut in ('.$statut.')' ); } 
         if($hotelId != ''){   $this->db->where('BaseTbl.hotelId = ' , $hotelId ); } 
-        if($date!="") {   $this->db->where('BaseTbl.checkin >= ' , $date ); } 
+        if($date!="") {   $this->db->where('BaseTbl.checkout >= ' , $date ); } 
         $this->db->order_by('MONTH(BaseTbl.checkin) DESC ' );
         $query = $this->db->get();
         return $query->result();
