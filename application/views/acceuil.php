@@ -340,7 +340,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             // Line chart
             new Chart(document.getElementById("chartjs-dashboard-line"), {
-                type: 'line',
+                type: 'bar',
                 data: {
                     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
                     datasets: [{
