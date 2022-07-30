@@ -139,7 +139,18 @@ class Reservation_model extends CI_Model
     }
 
 
-
+    
+    /**
+     * This function is used to update the user information
+     * @param array $userInfo : This is users updated information
+     * @param number $userId : This is user id
+     */
+    function editreservation($reservationInfo, $reservationId)
+    {
+        $this->db->where('reservationId', $reservationId);
+        $this->db->update('tbl_reservation', $reservationInfo);
+        return TRUE;
+    }
 
 
 

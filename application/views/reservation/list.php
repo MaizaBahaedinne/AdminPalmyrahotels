@@ -46,8 +46,11 @@
 			                                     echo $interval->d ; ?></td>
 			                                     <td><?php echo $book->price ?> DT</td>
 			                                     <td> 
+			                                     	<?php if ($book->statut == 3  ){  ?>
+                                                		<span class="badge bg-danger">Refused</span>
+		                                            <?php } ?>
 			                                     	<?php if ($book->statut == 2  ){  ?>
-                                                		<span class="badge bg-success">Done</span>
+                                                		<span class="badge bg-success">Accepted</span>
 		                                            <?php } ?>
 		                                            
 		                                            <?php if ($book->statut == 1  ){  ?>
