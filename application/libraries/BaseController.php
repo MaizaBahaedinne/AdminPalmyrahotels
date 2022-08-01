@@ -221,10 +221,10 @@ class BaseController extends CI_Controller {
                     $mail = $this->phpmailer_lib->load();
                     //$mail->SMTPDebug = SMTP::DEBUG_SERVER;   
                     // SMTP configuration
-                 
+                 		$mail->charSet = "UTF-8" ; 
                     $mail->isSMTP();
                     $mail->Host     = 'smtp.topnet.tn';
-             
+             				
                     $mail->Username = $from ;
                     $mail->Password = $password;
                    // $mail->SMTPAuth = true;
